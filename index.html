@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Pusat Panduan & Informasi Nokos — Jeeyhosting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== DESIGN TOKENS ===== */
+  :root {
+    --text:         #1a202c;
+    --text-muted:   #64748b;
+    --text-subtle:  #94a3b8;
+    --bg:           #f0f4fb;
+    --bg-subtle:    #e8edf8;
+    --surface:      #ffffff;
+    --surface-2:    #f8faff;
+    --border:       #e2e8f4;
+    --border-soft:  #edf0f7;
+    --blue:         #2563eb;
+    --blue-hover:   #1d4ed8;
+    --blue-deep:    #1e3a8a;
+    --blue-tint:    #eff6ff;
+    --amber:        #d97706;
+    --amber-tint:   #fef3c7;
+    --amber-border: #fde68a;
+    --green:        #16a34a;
+    --green-tint:   #f0fdf4;
+    --green-border: #bbf7d0;
+    --red:          #dc2626;
+    --red-tint:     #fff1f2;
+    --red-border:   #fecaca;
+    --purple:       #7c3aed;
+    --purple-tint:  #f5f3ff;
+    --purple-border:#ddd6fe;
+    --slate:        #475569;
+    --slate-tint:   #f1f5f9;
+    --r-xs: 6px;
+    --r-sm: 10px;
+    --r-md: 14px;
+    --r-lg: 18px;
+    --r-xl: 24px;
+    --r-2xl: 32px;
+    --shadow-xs:  0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+    --shadow-sm:  0 2px 8px rgba(15,23,42,0.07), 0 1px 3px rgba(15,23,42,0.04);
+    --shadow-md:  0 4px 16px rgba(15,23,42,0.09), 0 2px 6px rgba(15,23,42,0.04);
+    --shadow-lg:  0 12px 40px rgba(15,23,42,0.10), 0 4px 12px rgba(15,23,42,0.05);
+    --shadow-xl:  0 24px 60px rgba(15,23,42,0.14), 0 8px 20px rgba(15,23,42,0.06);
+    --shadow-blue: 0 8px 24px rgba(37,99,235,0.22), 0 2px 8px rgba(37,99,235,0.12);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(147,197,253,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 85% 110%, rgba(196,181,253,0.15) 0%, transparent 55%),
+      linear-gradient(160deg, #e8eef8 0%, #f0f4fb 50%, #edf1fb 100%);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ===== SHELL ===== */
+  .modal {
+    width: 100%;
+    height: 100%;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-soft);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 20;
+  }
+  .modal-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-deep), var(--blue), #60a5fa, var(--blue));
+    background-size: 200% 100%;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } }
+
+  .header-left { display: flex; align-items: center; gap: 11px; min-width: 0; }
+
+  .title-icon {
+    width: 36px; height: 36px;
+    border-radius: var(--r-sm);
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-blue);
+  }
+  .title-icon svg { width: 19px; height: 19px; color: #fff; }
+
+  .header-title {
+    font-size: 15px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.03em; line-height: 1.2;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .header-sub {
+    font-size: 11px; font-weight: 500; color: var(--text-subtle);
+    margin-top: 1px; letter-spacing: 0.01em;
+  }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: linear-gradient(135deg, #fef9ee, #fef3c7);
+    color: var(--amber); font-size: 11px; font-weight: 800;
+    padding: 5px 10px; border-radius: 999px; white-space: nowrap;
+    flex-shrink: 0; border: 1px solid var(--amber-border);
+    letter-spacing: 0.02em; box-shadow: 0 2px 6px rgba(217,119,6,0.12);
+  }
+  .badge svg { width: 12px; height: 12px; }
+
+  /* ===== INTRO STRIP ===== */
+  .intro {
+    padding: 9px 16px; font-size: 12.5px; font-weight: 500;
+    line-height: 1.55; color: var(--text-muted);
+    background: var(--surface-2); border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .intro strong { color: var(--text); font-weight: 700; }
+
+  /* ===== BODY WRAP ===== */
+  .body-wrap { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+  /* ===== TABS ===== */
+  .tabs {
+    display: flex; gap: 2px; padding: 7px 10px 0;
+    border-bottom: 1px solid var(--border); background: var(--surface);
+    flex-shrink: 0; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex: 0 0 auto; display: flex; align-items: center; gap: 6px;
+    padding: 8px 11px; font-size: 12px; font-weight: 700;
+    color: var(--text-muted); background: transparent; border: none;
+    border-bottom: 2.5px solid transparent; cursor: pointer;
+    transition: all 0.2s var(--ease); white-space: nowrap;
+    border-radius: var(--r-xs) var(--r-xs) 0 0; font-family: inherit;
+    letter-spacing: 0.01em;
+  }
+  .tab svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.2s var(--ease); }
+  .bab-label {
+    font-size: 9px; opacity: 0.65; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.06em; display: block; line-height: 1; margin-bottom: 1px;
+  }
+  .tab-inner { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
+  .tab:hover { color: var(--blue); background: var(--blue-tint); }
+  .tab:hover svg { transform: translateY(-1px); }
+  .tab.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-tint); }
+
+  /* ===== CONTENT ===== */
+  .content {
+    flex: 1; overflow-y: auto; padding: 16px 14px 24px;
+    background: var(--bg); scrollbar-width: thin; scrollbar-color: #c8d5e8 transparent;
+  }
+  .content::-webkit-scrollbar { width: 5px; }
+  .content::-webkit-scrollbar-thumb { background: #c8d5e8; border-radius: 10px; }
+
+  .panel { display: none; }
+  .panel.active { display: block; animation: panelIn 0.25s var(--ease) both; }
+  @keyframes panelIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== BAB HEADER ===== */
+  .bab-header { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft); }
+  .bab-header h2 {
+    margin: 0 0 4px; font-size: 17px; font-weight: 800;
+    color: var(--text); letter-spacing: -0.03em; line-height: 1.25;
+  }
+  .bab-header p { margin: 0; font-size: 12.5px; color: var(--text-muted); line-height: 1.55; font-weight: 500; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 16px; margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .card:last-child { margin-bottom: 0; }
+  .card:hover { box-shadow: var(--shadow-md); border-color: #d4dce8; }
+  .card-accent { border-left: 3px solid var(--blue); }
+
+  .card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 11px; }
+  .card-head h3 {
+    margin: 0; font-size: 13.5px; font-weight: 800;
+    color: var(--text); letter-spacing: -0.02em; line-height: 1.3;
+  }
+
+  /* ===== ICON CIRCLES ===== */
+  .icon-circle {
+    width: 34px; height: 34px; border-radius: var(--r-sm);
+    background: var(--blue-tint); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; border: 1px solid rgba(37,99,235,0.12);
+  }
+  .icon-circle svg { width: 16px; height: 16px; color: var(--blue); }
+  .icon-circle.grey { background: var(--slate-tint); border-color: var(--border); }
+  .icon-circle.grey svg { color: var(--slate); }
+  .icon-circle.green { background: var(--green-tint); border-color: var(--green-border); }
+  .icon-circle.green svg { color: var(--green); }
+  .icon-circle.amber { background: var(--amber-tint); border-color: var(--amber-border); }
+  .icon-circle.amber svg { color: var(--amber); }
+  .icon-circle.red { background: var(--red-tint); border-color: var(--red-border); }
+  .icon-circle.red svg { color: var(--red); }
+  .icon-circle.purple { background: var(--purple-tint); border-color: var(--purple-border); }
+  .icon-circle.purple svg { color: var(--purple); }
+
+  /* ===== CARD BODY ===== */
+  .card-body { font-size: 13px; line-height: 1.7; color: var(--text-muted); }
+  .card-body p { margin: 0 0 10px; }
+  .card-body p:last-child { margin-bottom: 0; }
+  .card-body strong { color: var(--text); font-weight: 700; }
+  .card-body em { font-style: italic; color: var(--slate); }
+
+  /* ===== SECTION DIVIDER dalam card ===== */
+  .card-divider {
+    height: 1px; background: var(--border-soft); margin: 12px 0;
+  }
+
+  /* ===== HIGHLIGHT BOX (inline di dalam card) ===== */
+  .highlight-box {
+    background: var(--blue-tint); border: 1px solid rgba(37,99,235,0.15);
+    border-radius: var(--r-sm); padding: 10px 12px; margin: 10px 0;
+    font-size: 12.5px; line-height: 1.6; color: var(--text-muted);
+  }
+  .highlight-box strong { color: var(--blue); font-weight: 700; }
+  .highlight-box.warn { background: var(--amber-tint); border-color: var(--amber-border); }
+  .highlight-box.warn strong { color: var(--amber); }
+  .highlight-box.danger { background: var(--red-tint); border-color: var(--red-border); }
+  .highlight-box.danger strong { color: var(--red); }
+  .highlight-box.success { background: var(--green-tint); border-color: var(--green-border); }
+  .highlight-box.success strong { color: var(--green); }
+
+  /* ===== INFO BOXES ===== */
+  .info-box {
+    display: flex; gap: 12px; padding: 13px 14px;
+    border-radius: var(--r-md); margin-bottom: 12px;
+    align-items: flex-start; border: 1px solid transparent;
+  }
+  .info-box:last-child { margin-bottom: 0; }
+  .info-box.warning { background: #fffbeb; border-color: var(--amber-border); }
+  .info-box.danger  { background: var(--red-tint); border-color: var(--red-border); }
+  .info-box.success { background: var(--green-tint); border-color: var(--green-border); }
+  .info-box.info    { background: var(--blue-tint); border-color: rgba(37,99,235,0.2); }
+  .info-box .icon { flex-shrink: 0; margin-top: 1px; }
+  .info-box.warning .icon svg { color: var(--amber); width: 19px; height: 19px; }
+  .info-box.danger  .icon svg { color: var(--red);   width: 19px; height: 19px; }
+  .info-box.success .icon svg { color: var(--green);  width: 19px; height: 19px; }
+  .info-box.info    .icon svg { color: var(--blue);   width: 19px; height: 19px; }
+  .info-box .text h4 { margin: 0 0 5px; font-size: 13px; font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
+  .info-box .text p  { margin: 0 0 8px; font-size: 12.5px; line-height: 1.65; color: var(--text-muted); }
+  .info-box .text p:last-child { margin-bottom: 0; }
+  .info-box .text p strong { color: var(--text); font-weight: 700; }
+  .info-box .text ul { margin: 6px 0 0; padding: 0; list-style: none; }
+  .info-box .text ul li {
+    position: relative; padding-left: 14px; margin-bottom: 5px;
+    font-size: 12.5px; line-height: 1.6; color: var(--text-muted);
+  }
+  .info-box .text ul li::before {
+    content: ''; position: absolute; left: 0; top: 7px;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--blue);
+  }
+  .info-box.warning .text ul li::before { background: var(--amber); }
+  .info-box.danger  .text ul li::before { background: var(--red); }
+  .info-box.success .text ul li::before { background: var(--green); }
+  .info-box .text ul li strong { color: var(--text); font-weight: 700; }
+
+  /* ===== LISTS ===== */
+  .check-list { list-style: none; margin: 0; padding: 0; }
+  .check-list li {
+    display: flex; align-items: flex-start; gap: 9px;
+    margin-bottom: 10px; font-size: 13px; line-height: 1.65; color: var(--text-muted);
+  }
+  .check-list li:last-child { margin-bottom: 0; }
+  .check-list li strong { color: var(--text); font-weight: 700; }
+  .check-icon {
+    width: 19px; height: 19px; border-radius: var(--r-xs);
+    background: var(--green-tint); border: 1px solid var(--green-border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .check-icon svg { width: 10px; height: 10px; color: var(--green); stroke-width: 3; }
+
+  .x-icon {
+    width: 19px; height: 19px; border-radius: var(--r-xs);
+    background: var(--red-tint); border: 1px solid var(--red-border);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+  .x-icon svg { width: 10px; height: 10px; color: var(--red); stroke-width: 3; }
+
+  .dot-list { list-style: none; margin: 10px 0 0; padding: 0; }
+  .dot-list li {
+    position: relative; padding-left: 15px; margin-bottom: 9px;
+    font-size: 13px; line-height: 1.65; color: var(--text-muted);
+  }
+  .dot-list li:last-child { margin-bottom: 0; }
+  .dot-list li::before {
+    content: ''; position: absolute; left: 0; top: 8px;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--blue);
+  }
+  .dot-list li strong { color: var(--text); font-weight: 700; }
+  .dot-list li em { font-style: italic; color: var(--slate); }
+
+  /* ===== STEP LIST ===== */
+  .step-list { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+  .step-list li {
+    position: relative; padding-left: 38px; margin-bottom: 15px;
+    font-size: 13px; line-height: 1.7; color: var(--text-muted);
+  }
+  .step-list li:last-child { margin-bottom: 0; }
+  .step-list li::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 0; top: 0;
+    width: 25px; height: 25px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+    color: #fff; font-size: 11.5px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(37,99,235,0.3); font-family: "Inter", sans-serif;
+  }
+  .step-list li strong { color: var(--text); font-weight: 700; }
+  .step-list li em { font-style: italic; }
+  .step-list li .step-note {
+    display: block; margin-top: 5px; padding: 7px 10px;
+    background: var(--bg); border-radius: var(--r-sm);
+    border: 1px solid var(--border); font-size: 12px; line-height: 1.55; color: var(--text-subtle);
+  }
+
+  /* ===== FAQ ITEMS ===== */
+  .faq-item {
+    margin-bottom: 10px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-md); padding: 14px 15px;
+    transition: box-shadow 0.2s var(--ease);
+  }
+  .faq-item:hover { box-shadow: var(--shadow-sm); }
+  .faq-item:last-child { margin-bottom: 0; }
+  .faq-q {
+    display: flex; align-items: flex-start; gap: 9px;
+    font-size: 13px; font-weight: 800; color: var(--text);
+    margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  .q-mark {
+    width: 21px; height: 21px; border-radius: var(--r-xs);
+    background: var(--blue-tint); color: var(--blue);
+    font-size: 11.5px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    border: 1px solid rgba(37,99,235,0.15); font-family: "Inter", sans-serif;
+  }
+  .faq-a {
+    font-size: 13px; line-height: 1.7; color: var(--text-muted); padding-left: 30px;
+  }
+  .faq-a p { margin: 0 0 8px; }
+  .faq-a p:last-child { margin-bottom: 0; }
+  .faq-a strong { color: var(--text); font-weight: 700; }
+  .faq-a em { font-style: italic; }
+
+  /* ===== INLINE LINK ===== */
+  .inline-link {
+    color: var(--blue); font-weight: 700; text-decoration: none;
+    padding: 1px 5px; background: var(--blue-tint); border-radius: var(--r-xs);
+    transition: background 0.15s;
+  }
+  .inline-link:hover { background: #dbeafe; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    padding: 12px 14px; background: var(--surface);
+    border-top: 1px solid var(--border); flex-shrink: 0;
+    box-shadow: 0 -6px 20px rgba(15,23,42,0.04);
+  }
+  .checkbox-row {
+    display: flex; align-items: flex-start; gap: 9px;
+    margin-bottom: 10px; background: var(--bg); padding: 10px 13px;
+    border-radius: var(--r-md); border: 1.5px dashed #c8d5e8;
+    cursor: pointer; transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  }
+  .checkbox-row:hover { border-color: var(--blue); background: var(--blue-tint); }
+  .checkbox-row.checked { border-color: var(--green); background: var(--green-tint); }
+  .checkbox-row input[type="checkbox"] {
+    width: 17px; height: 17px; accent-color: var(--blue);
+    flex-shrink: 0; margin-top: 1px; cursor: pointer;
+  }
+  .checkbox-row label { font-size: 12.5px; font-weight: 600; color: var(--text); cursor: pointer; user-select: none; line-height: 1.5; }
+
+  /* ===== BUTTONS ===== */
+  .btn-row { display: flex; gap: 10px; }
+  .btn {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center;
+    gap: 7px; padding: 12px 16px; border-radius: var(--r-md); border: none;
+    font-size: 14px; font-weight: 800; font-family: inherit; cursor: pointer;
+    transition: background 0.2s var(--ease), transform 0.15s var(--ease-spring), box-shadow 0.2s var(--ease), opacity 0.2s;
+    letter-spacing: -0.01em; position: relative; overflow: hidden;
+  }
+  .btn::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0); transition: background 0.15s; }
+  .btn:active::after { background: rgba(0,0,0,0.06); }
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+    color: #fff; opacity: 0.45; pointer-events: none;
+  }
+  .btn-primary.enabled { opacity: 1; pointer-events: auto; box-shadow: var(--shadow-blue); }
+  .btn-primary.enabled:hover {
+    background: linear-gradient(135deg, #3b82f6, var(--blue-hover));
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(37,99,235,0.32), 0 4px 10px rgba(37,99,235,0.16);
+  }
+  .btn-primary.enabled:active { transform: translateY(0); box-shadow: var(--shadow-blue); }
+
+  /* ===== DESKTOP ===== */
+  @media (min-width: 768px) {
+    body { padding: 28px; }
+    .modal {
+      width: min(96vw, 940px); height: auto; max-height: 93vh;
+      border-radius: var(--r-2xl);
+      box-shadow: var(--shadow-xl), 0 0 0 1px rgba(15,23,42,0.04);
+    }
+    .modal-header { padding: 18px 26px 12px; }
+    .header-title { font-size: 17px; }
+    .intro { padding: 11px 26px; font-size: 13px; }
+    .body-wrap { flex-direction: row; }
+    .tabs {
+      flex-direction: column; width: 210px; min-width: 210px;
+      padding: 16px 10px; border-bottom: none; border-right: 1px solid var(--border);
+      overflow-x: visible; overflow-y: auto; background: var(--surface-2); gap: 2px;
+    }
+    .tab {
+      flex-direction: row; padding: 10px 13px;
+      border-bottom: 2.5px solid transparent; border-left: 2.5px solid transparent;
+      border-radius: var(--r-sm); font-size: 12px; gap: 8px; width: 100%;
+    }
+    .tab:hover { border-left-color: rgba(37,99,235,0.3); }
+    .tab.active {
+      border-bottom-color: transparent; border-left-color: var(--blue);
+      background: var(--blue-tint); box-shadow: inset 0 0 0 1px rgba(37,99,235,0.1);
+    }
+    .tab svg { width: 15px; height: 15px; }
+    .content { padding: 26px; }
+    .bab-header h2 { font-size: 20px; }
+    .bab-header p { font-size: 13px; }
+    .card-body { font-size: 13.5px; }
+    .dot-list li, .step-list li, .check-list li, .faq-a, .faq-q { font-size: 13.5px; }
+    .info-box .text p, .info-box .text ul li { font-size: 13px; }
+    .footer { padding: 16px 26px; }
+    .checkbox-row { padding: 11px 16px; }
+    .checkbox-row label { font-size: 13px; }
+    .btn-row { justify-content: flex-end; }
+    .btn { flex: none; min-width: 175px; padding: 13px 22px; font-size: 14.5px; }
+  }
+
+  /* ===== TABLET ===== */
+  @media (min-width: 520px) and (max-width: 767px) {
+    .modal-header { padding: 14px 20px 11px; }
+    .intro { padding: 10px 20px; }
+    .content { padding: 18px 18px 26px; }
+    .footer { padding: 14px 20px; }
+    .card { padding: 16px 18px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) { .content { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+
+<div class="modal">
+
+  <!-- HEADER -->
+  <div class="modal-header">
+    <div class="header-left">
+      <div class="title-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <path d="M2 15h10"/><path d="m9 18 3-3-3-3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="header-title">Pusat Informasi Nokos</div>
+        <div class="header-sub">Jeeyhosting · Jeeytsdbot</div>
+      </div>
+    </div>
+    <div class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <span>Wajib Dibaca!</span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    Selamat datang di <strong>Jeeyhosting (Jeeytsdbot)</strong>! Baca seluruh panduan berikut agar Anda memahami cara kerja nomor virtual (Nokos), aturan saldo, cara transaksi, trik IP/VPN, serta pengamanan akun — demi menghindari kerugian dan kegagalan transaksi.
+  </div>
+
+  <!-- BODY WRAP -->
+  <div class="body-wrap">
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" data-tab="pengenalan">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <span class="tab-inner"><span class="bab-label">Bab 1</span>Fakta Nomor Virtual</span>
+      </button>
+      <button class="tab" data-tab="deposit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+        <span class="tab-inner"><span class="bab-label">Bab 2</span>Aturan & Deposit</span>
+      </button>
+      <button class="tab" data-tab="transaksi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="tab-inner"><span class="bab-label">Bab 3</span>Cara Pembelian</span>
+      </button>
+      <button class="tab" data-tab="tutorial">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span class="tab-inner"><span class="bab-label">Bab 4</span>Trik IP & Anti Banned</span>
+      </button>
+      <button class="tab" data-tab="faq">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.1 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><path d="M12 17h.01"/><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        <span class="tab-inner"><span class="bab-label">Bab 5</span>Keamanan & Refund</span>
+      </button>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- ===================== BAB 1 ===================== -->
+      <div class="panel active" id="panel-pengenalan">
+        <div class="bab-header">
+          <h2>Bab 1: Fakta Tentang Nomor Virtual (Nokos)</h2>
+          <p>Pahami secara mendalam bagaimana teknologi di balik nomor virtual bekerja, mengapa kadang gagal, dan apa yang perlu Anda ketahui sebelum bertransaksi pertama kali.</p>
+        </div>
+
+        <!-- Card 1: Apa itu Nokos -->
+        <div class="card">
+          <div class="card-head">
+            <div class="icon-circle grey">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h3>Apa Itu Nokos (Nomor OTP Virtual)?</h3>
+          </div>
+          <div class="card-body">
+            <p><strong>Nokos</strong> adalah singkatan dari <strong>Nomor OTP Sewa</strong> — yaitu nomor telepon virtual yang disewa dalam waktu singkat hanya untuk menerima satu kode SMS verifikasi (OTP). Berbeda dengan kartu SIM fisik (seperti Telkomsel, Indosat, XL) yang Anda beli di konter dan miliki secara permanen, nomor virtual ini bersifat sementara, dikelola secara digital di server cloud, dan dikembalikan ke sistem setelah masa sewanya habis.</p>
+            <p>Nomor-nomor ini bersumber dari ribuan provider di seluruh dunia — mulai dari Amerika Serikat, Rusia, India, Inggris, hingga Asia Tenggara — dan dikelola oleh aggregator yang menyediakan API bagi layanan seperti Jeeyhosting untuk mendistribusikannya ke pengguna secara real-time melalui bot Telegram.</p>
+            <div class="card-divider"></div>
+            <p>Ada dua jenis utama nomor yang beredar di sistem ini:</p>
+            <ul class="dot-list">
+              <li><strong>Nomor VOIP (Voice over IP):</strong> Nomor yang dibuat 100% secara digital di cloud, tanpa kartu SIM fisik. Kelebihannya murah dan stok melimpah. Kekurangannya: platform seperti <strong>WhatsApp, ChatGPT, Instagram, Twitter/X, dan Binance</strong> telah membangun database daftar hitam (blacklist) jutaan prefix nomor VOIP yang dikenal sebagai sumber spam dan akun palsu. Ketika nomor VOIP yang Anda pilih kebetulan masuk daftar hitam platform tersebut, maka SMS OTP tidak akan dikirimkan — bukan berarti ada masalah di sisi bot, melainkan platform menolak mengirim SMS ke nomor tersebut.</li>
+              <li><strong>Nomor Recycled (Daur Ulang):</strong> Nomor fisik dari negara luar yang pernah aktif, lalu kartu SIM-nya mati karena masa aktif habis, kemudian diaktifkan kembali oleh provider negaranya dan didaftarkan ulang ke sistem virtual. Nomor jenis ini umumnya lebih "bersih" di mata platform karena punya riwayat penggunaan nyata. Namun risikonya: jika pengguna lama pernah mengaktifkan <strong>PIN Verifikasi 2 Langkah (2FA)</strong>, maka saat Anda mencoba login ke aplikasi menggunakan nomor tersebut, sistem akan meminta PIN yang tidak Anda ketahui. Ini bukan bug — ini memang riwayat akun lama yang terbawa.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2: Kenapa OTP Sering Gagal -->
+        <div class="card">
+          <div class="card-head">
+            <div class="icon-circle red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <h3>Kenapa OTP Sering Tidak Masuk? (Penjelasan Teknis)</h3>
+          </div>
+          <div class="card-body">
+            <p>Ini adalah pertanyaan paling umum dari pengguna baru. Ada <strong>beberapa faktor teknis</strong> yang menyebabkan OTP gagal masuk, dan penting untuk Anda pahami agar tidak salah menyimpulkan:</p>
+            <ul class="dot-list">
+              <li><strong>Platform Memblokir Nomor VOIP:</strong> WhatsApp, Instagram, ChatGPT, dan platform sejenis secara aktif mendeteksi dan memblokir prefix nomor VOIP tertentu. Sistem mereka mengenali pola nomor virtual dari database yang diperbarui secara berkala. Jika nomor yang Anda peroleh kebetulan diblokir, SMS tidak akan dikirim sama sekali ke sisi provider — sehingga kode tidak pernah sampai ke bot.</li>
+              <li><strong>Overloaded Server Provider:</strong> Pada jam-jam sibuk, server provider nomor virtual bisa mengalami antrian tinggi. SMS dari platform terkadang tertahan di jaringan operator dan tiba dengan delay 1–5 menit, atau bahkan gagal total jika server sedang maintenance.</li>
+              <li><strong>IP Tidak Sesuai Lokasi:</strong> Platform seperti WhatsApp mendeteksi <em>lokasi IP Anda</em> saat meminta OTP. Jika Anda membeli nomor USA tapi IP Anda dari Indonesia, sistem akan mencurigai aktivitas tersebut sebagai bot atau penipuan dan menolak mengirim SMS. Ini adalah penyebab terbesar kegagalan yang sering diabaikan pengguna.</li>
+              <li><strong>Device Fingerprint Terdeteksi:</strong> Jika HP Anda sebelumnya sudah pernah mencoba mendaftar berkali-kali dan gagal, perangkat Anda sudah "diingat" oleh platform. Mereka merekam kombinasi model HP, versi OS, resolusi layar, dan data lainnya. Bahkan dengan nomor baru sekalipun, platform bisa langsung menolak atau meminta verifikasi tambahan.</li>
+              <li><strong>Nomor Sudah Pernah Terdaftar:</strong> Nomor recycled mungkin pernah digunakan untuk mendaftar platform yang sama oleh pengguna sebelumnya. Beberapa platform seperti WhatsApp hanya mengizinkan satu nomor untuk satu akun dan tidak mengizinkan pendaftaran ulang dalam waktu singkat.</li>
+            </ul>
+            <div class="highlight-box warn">
+              <strong>⚠ Catatan Penting:</strong> Kegagalan OTP masuk <strong>TIDAK OTOMATIS</strong> berarti Anda berhak refund. Refund hanya berlaku jika Anda tidak menerima SMS sama sekali dan melakukan cancel sebelum 3 menit. Selalu baca Bab 5 tentang kebijakan refund sebelum melakukan pembelian.
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Syarat Mutlak -->
+        <div class="card">
+          <div class="card-head">
+            <div class="icon-circle grey">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3>Syarat Mutlak & Sifat Dasar Transaksi Nokos</h3>
+          </div>
+          <div class="card-body">
+            <p>Sebelum melakukan pembelian pertama Anda, pahami benar-benar sifat dasar layanan ini:</p>
+            <ul class="dot-list">
+              <li><strong>1 Kali Pakai (One-Time-Use):</strong> Setiap nomor yang Anda beli hanya bisa digunakan untuk menerima <strong>satu SMS OTP</strong>. Begitu kode masuk, nomor tersebut otomatis hangus dari sistem dan tidak bisa digunakan kembali — bahkan jika Anda ingin meminta kode verifikasi lagi untuk nomor yang sama keesokan harinya, itu tidak mungkin dilakukan.</li>
+              <li><strong>Bukan Nomor Permanen:</strong> Nomor ini tidak bisa Anda simpan, tidak bisa menerima telepon, tidak bisa digunakan untuk WhatsApp Call, dan tidak bisa dijadikan nomor utama HP Anda. Fungsinya <em>murni</em> hanya untuk menerima satu kode SMS dalam jendela waktu tertentu (biasanya 3–20 menit tergantung platform).</li>
+              <li><strong>Tidak Ada Garansi 100% Berhasil:</strong> Karena sifat nomor virtual yang dijelaskan di atas, tidak ada sistem Nokos manapun di dunia yang bisa menjamin 100% keberhasilan. Tingkat keberhasilan bergantung pada platform tujuan, kualitas nomor yang tersedia, kondisi server provider, dan faktor IP/device pengguna. Jeeyhosting berupaya menyediakan nomor dengan tingkat keberhasilan terbaik dari berbagai server provider.</li>
+              <li><strong>Tanggung Jawab Pengguna:</strong> Anda bertanggung jawab atas pilihan layanan, platform tujuan, dan kondisi perangkat/IP Anda. Jika OTP berhasil masuk namun akun terkena banned setelahnya karena aktivitas Anda sendiri, itu sepenuhnya di luar tanggung jawab sistem Jeeyhosting.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 4: Perbandingan Server -->
+        <div class="card">
+          <div class="card-head">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            </div>
+            <h3>Perbedaan Server 1, Server 2, dan Server Lainnya</h3>
+          </div>
+          <div class="card-body">
+            <p>Jeeyhosting menyediakan akses ke beberapa server provider sekaligus. Masing-masing server memiliki keunggulan dan kelemahannya tersendiri:</p>
+            <ul class="dot-list">
+              <li><strong>Server 1 (Utama):</strong> Biasanya memiliki stok nomor paling lengkap dan harga paling kompetitif. Namun karena banyak pengguna yang menggunakannya, server ini paling sering mengalami kehabisan stok pada jam sibuk, atau mengalami delay SMS yang lebih tinggi.</li>
+              <li><strong>Server 2 (Alternatif):</strong> Stok mungkin lebih terbatas untuk beberapa layanan, namun sering kali memiliki kualitas nomor yang lebih segar (lebih sedikit digunakan pengguna lain sebelumnya). Cocok dicoba ketika Server 1 sering gagal untuk platform tertentu.</li>
+              <li><strong>Server Lainnya:</strong> Beberapa server khusus tersedia untuk platform spesifik seperti WhatsApp, Telegram, atau platform fintech. Harga bisa lebih tinggi, namun tingkat keberhasilannya biasanya lebih baik untuk platform tersebut.</li>
+            </ul>
+            <div class="highlight-box">
+              <strong>💡 Tips:</strong> Jika satu server gagal terus-menerus untuk platform yang sama, selalu coba beralih ke server lain sebelum menyerah. Perbedaan server bisa sangat signifikan pengaruhnya terhadap keberhasilan OTP.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== BAB 2 ===================== -->
+      <div class="panel" id="panel-deposit">
+        <div class="bab-header">
+          <h2>Bab 2: Aturan Saldo & Sistem Deposit</h2>
+          <p>Pahami secara detail bagaimana sistem saldo bekerja di Jeeyhosting, cara melakukan deposit yang benar, hal-hal yang harus dihindari, dan konsekuensi dari setiap tindakan yang salah.</p>
+        </div>
+
+        <div class="info-box danger">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="text">
+            <h4>🚫 Saldo TIDAK BISA Ditarik Kembali (No Withdraw — Permanen)</h4>
+            <p><strong>Ini adalah aturan paling penting yang wajib Anda pahami sebelum deposit pertama.</strong> Saldo yang sudah Anda depositkan ke dalam server bot Jeeyhosting bersifat <strong>NON-REFUNDABLE dan TIDAK BISA ditarik kembali</strong> ke rekening bank, dompet digital (OVO, GoPay, Dana, ShopeePay), maupun metode pembayaran apapun.</p>
+            <p>Saldo tersebut <strong>hanya dan semata-mata</strong> dapat digunakan untuk transaksi pembelian layanan Nokos (nomor OTP virtual) di dalam bot Telegram Jeeyhosting. Tidak ada pengecualian untuk aturan ini, baik dengan alasan salah transfer, keberatan, maupun alasan lainnya.</p>
+            <ul>
+              <li>Pastikan Anda benar-benar berniat menggunakan layanan ini sebelum melakukan deposit.</li>
+              <li>Lakukan deposit dalam jumlah yang sesuai kebutuhan Anda — jangan over-deposit jika tidak yakin akan menggunakannya semua.</li>
+              <li>Kesalahan nominal deposit (<em>misalnya</em>: terlanjur transfer terlalu besar) tidak bisa dikembalikan. Saldo akan tetap tersimpan di akun Anda untuk digunakan di masa depan.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-box success">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="text">
+            <h4>⚡ Cara Kerja Sistem Deposit Otomatis (Real-Time)</h4>
+            <p>Jeeyhosting menggunakan sistem <strong>API Mutasi Rekening Otomatis</strong> yang memantau setiap masuknya transfer ke rekening kami secara real-time, 24 jam sehari, 7 hari seminggu — tanpa perlu konfirmasi manual ke admin.</p>
+            <p>Begini cara kerjanya step by step:</p>
+            <ul>
+              <li>Anda membuka menu <strong>Deposit</strong> di dalam bot dan memilih nominal serta metode pembayaran.</li>
+              <li>Bot akan menampilkan <strong>invoice/tiket deposit</strong> lengkap dengan nomor rekening tujuan, nominal yang harus ditransfer (sudah termasuk kode unik agar sistem bisa mengenali transfer Anda), dan batas waktu pembayaran.</li>
+              <li>Lakukan transfer sesuai nominal persis — termasuk kode unik di akhir (misalnya Rp 50.123 bukan Rp 50.000). Kode unik ini penting agar sistem bisa mengidentifikasi bahwa transfer tersebut milik Anda.</li>
+              <li>Setelah transfer berhasil, <strong>tunggu 30 detik hingga 3 menit</strong>. Sistem API kami akan otomatis mendeteksi mutasi, memverifikasi nominal, dan menambahkan saldo ke akun bot Anda.</li>
+              <li>Bot akan mengirimkan notifikasi konfirmasi bahwa saldo berhasil masuk. Anda sudah siap bertransaksi!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-box warning">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="text">
+            <h4>⚠ JANGAN Batalkan Invoice Setelah Transfer!</h4>
+            <p>Ini adalah kesalahan yang paling sering dilakukan pengguna baru dan bisa menyebabkan saldo <strong>nyangkut / gagal masuk</strong>. Setelah Anda melakukan transfer uang ke rekening yang tertera, <strong>JANGAN menekan tombol "Batalkan" atau "Cancel" di bot</strong> dengan alasan apapun.</p>
+            <ul>
+              <li><strong>Mengapa berbahaya?</strong> Ketika Anda menekan Cancel, bot akan menandai tiket tersebut sebagai <em>"dibatalkan oleh pengguna"</em> dan sistem akan mengabaikan mutasi yang masuk berikutnya yang terkait tiket itu. Akibatnya, uang sudah terkirim tapi saldo tidak masuk — dan penyelesaiannya harus dilakukan secara manual oleh admin, yang membutuhkan waktu.</li>
+              <li><strong>Jika transfer sudah terlanjur dilakukan:</strong> Cukup tunggu saja. Sistem akan mendeteksi transfer Anda secara otomatis selama invoice masih aktif (belum expired).</li>
+              <li><strong>Jika invoice sudah Expired (lewat 20 menit):</strong> Tiket hangus secara otomatis. Jika Anda sudah terlanjur transfer pada tiket expired, segera hubungi admin melalui saluran support resmi dengan menyertakan bukti transfer dan ID tiket.</li>
+              <li><strong>Jika nominal salah (tidak termasuk kode unik):</strong> Sistem mungkin gagal mengenali transfer Anda. Hubungi admin dengan bukti transfer dan bot akan membantu mengkonfirmasi secara manual.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card: Metode Pembayaran -->
+        <div class="card">
+          <div class="card-head">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <h3>Metode Pembayaran yang Tersedia</h3>
+          </div>
+          <div class="card-body">
+            <p>Jeeyhosting mendukung berbagai metode pembayaran populer di Indonesia untuk kemudahan deposit Anda:</p>
+            <ul class="dot-list">
+              <li><strong>Transfer Bank (BCA, Mandiri, BRI, BNI, dll):</strong> Metode paling umum. Saldo real-time melalui deteksi mutasi API. Cocok untuk nominal menengah ke atas karena biaya transfer antar bank yang perlu diperhatikan.</li>
+              <li><strong>QRIS (Quick Response Code Indonesian Standard):</strong> Scan QR menggunakan aplikasi GoPay, OVO, Dana, ShopeePay, LinkAja, atau aplikasi bank apapun yang mendukung QRIS. Proses instan, cocok untuk nominal kecil hingga menengah.</li>
+              <li><strong>Dompet Digital (E-Wallet):</strong> Beberapa opsi e-wallet tersedia langsung tanpa perlu scan QR. Pastikan mengikuti instruksi nominal persis termasuk kode unik.</li>
+            </ul>
+            <div class="highlight-box">
+              <strong>💡 Tips Deposit:</strong> Selalu gunakan fitur <em>"Transfer Persis"</em> atau <em>"Salin Nominal"</em> yang tersedia di bot agar tidak ada kesalahan nominal. Selisih 1 rupiah pun bisa membuat sistem gagal mengenali transfer Anda.
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Saldo Hold -->
+        <div class="card">
+          <div class="card-head">
+            <div class="icon-circle amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Sistem Saldo "Hold" Saat Transaksi Berlangsung</h3>
+          </div>
+          <div class="card-body">
+            <p>Ketika Anda mengambil nomor dari bot, sistem akan langsung <strong>menahan (hold)</strong> sejumlah saldo sesuai harga nomor tersebut. Ini berarti saldo Anda akan berkurang sementara sebelum transaksi selesai atau dibatalkan.</p>
+            <ul class="dot-list">
+              <li><strong>Jika OTP berhasil masuk:</strong> Saldo yang di-hold akan dipotong permanen sebagai biaya transaksi. Transaksi dianggap selesai dan tidak ada refund.</li>
+              <li><strong>Jika Anda cancel sebelum 3 menit (dan OTP tidak masuk):</strong> Saldo hold akan dikembalikan penuh ke akun Anda secara otomatis dalam hitungan detik.</li>
+              <li><strong>Jika waktu habis (timeout otomatis):</strong> Bot akan otomatis membatalkan dan mengembalikan saldo hold jika Anda tidak melakukan apa-apa dan OTP tidak kunjung masuk melebihi batas waktu server.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== BAB 3 ===================== -->
+      <div class="panel" id="panel-transaksi">
+        <div class="bab-header">
+          <h2>Bab 3: Cara Beli & Alur Transaksi Lengkap</h2>
+          <p>Panduan langkah demi langkah cara membeli nomor OTP di dalam bot, dari awal hingga OTP berhasil diterima — lengkap dengan tips di setiap tahapan.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h3>Alur Transaksi Pembelian Nomor OTP</h3>
+          </div>
+          <ol class="step-list">
+            <li>
+              <strong>Buka Menu Katalog di Bot:</strong> Masuk ke bot Telegram Jeeytsdbot, lalu klik menu <strong>"All Katalog"</strong> atau <strong>"Beli Nomor OTP"</strong>. Di sini Anda akan melihat daftar semua platform yang tersedia beserta estimasi harga dan stok.
+              <span class="step-note">💡 Pastikan saldo Anda mencukupi sebelum memulai. Cek saldo melalui menu "Cek Saldo" atau "Profil" di bot.</span>
+            </li>
+            <li>
+              <strong>Pilih Server Provider:</strong> Tersedia beberapa pilihan server (Server 1, Server 2, dst.). Setiap server memiliki stok dan kualitas nomor yang berbeda-beda. Jika Server 1 sering menampilkan "Stok Kosong" atau OTP sering gagal masuk untuk platform tertentu, coba beralih ke Server 2 atau server alternatif lainnya.
+              <span class="step-note">⚡ Server 1 biasanya termurah; Server 2 sering lebih segar/bersih untuk platform ketat seperti WhatsApp.</span>
+            </li>
+            <li>
+              <strong>Pilih Platform / Layanan:</strong> Cari nama aplikasi yang Anda tuju — misalnya <em>WhatsApp, TikTok, Facebook, Instagram, Telegram, Twitter, ChatGPT, Binance,</em> dan ratusan platform lainnya. Gunakan fitur pencarian jika daftar terlalu panjang. Perhatikan harga per nomor yang tertera — harga berbeda tergantung platform dan negara.
+            </li>
+            <li>
+              <strong>Pilih Negara:</strong> Setelah memilih platform, Anda akan diminta memilih negara asal nomor. Pilihannya meliputi Indonesia, USA, Rusia, India, Inggris, Vietnam, dan banyak lagi. <strong>Penting:</strong> Sesuaikan pilihan negara dengan IP/VPN yang sedang Anda gunakan (lihat Bab 4 untuk penjelasan lengkap tentang ini).
+              <span class="step-note">⚠ Jangan pilih nomor USA jika IP Anda masih Indonesia — tingkat kegagalan akan sangat tinggi.</span>
+            </li>
+            <li>
+              <strong>Terima & Salin Nomor:</strong> Bot akan memberikan 1 nomor telepon secara acak dari stok yang tersedia. Saldo Anda akan langsung <em>ditahan sementara (hold)</em> sejumlah harga nomor tersebut. Salin nomor tersebut dengan menekan tombol salin yang disediakan bot.
+            </li>
+            <li>
+              <strong>Daftarkan Nomor ke Aplikasi Target:</strong> Buka aplikasi tujuan (misal: WhatsApp), paste nomor yang Anda salin dari bot ke kolom "Nomor Telepon", lalu klik <em>"Kirim Kode"</em> atau <em>"Verifikasi via SMS"</em>. Pastikan format nomor sudah benar (termasuk kode negara, misal +1 untuk USA).
+              <span class="step-note">💡 Jangan tutup bot Telegram — biarkan tetap terbuka di background agar notifikasi OTP langsung terlihat.</span>
+            </li>
+            <li>
+              <strong>Tunggu Kode OTP Masuk di Bot:</strong> Kembali ke bot, pantau layar selama beberapa saat. Jika OTP berhasil dikirim oleh platform ke nomor virtual, kode akan otomatis muncul di chat bot dalam hitungan detik hingga 2 menit. Segera masukkan kode tersebut ke aplikasi sebelum kedaluwarsa (biasanya kode OTP berlaku 60–300 detik tergantung platform).
+            </li>
+            <li>
+              <strong>Jika OTP Tidak Muncul dalam 3 Menit:</strong> Anda berhak membatalkan transaksi secara gratis melalui tombol <strong>"Cancel / Batalkan"</strong> di bot. Setelah dibatalkan, saldo hold akan dikembalikan penuh. Anda bisa mencoba nomor baru dari server lain, atau mengikuti trik di Bab 4 sebelum mencoba lagi.
+              <span class="step-note">⚠ Jangan cancel jika OTP sudah masuk — saldo tidak bisa dikembalikan setelah OTP berhasil diterima.</span>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Card: Tips Sukses -->
+        <div class="card">
+          <div class="card-head">
+            <div class="icon-circle green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Tips Meningkatkan Tingkat Keberhasilan Transaksi</h3>
+          </div>
+          <div class="card-body">
+            <ul class="dot-list">
+              <li><strong>Siapkan VPN/Proxy terlebih dahulu</strong> sebelum membuka katalog. Pastikan VPN aktif dengan lokasi yang sesuai negara nomor yang akan dibeli. Jangan beli dulu baru pasang VPN — urutannya penting.</li>
+              <li><strong>Bersihkan cache aplikasi</strong> yang akan didaftarkan sebelum memasukkan nomor baru. Ini menghapus riwayat percobaan gagal sebelumnya dari memori aplikasi.</li>
+              <li><strong>Gunakan mode Dual App / Clone App</strong> jika tersedia di HP Anda, agar aplikasi berjalan di lingkungan yang lebih bersih dan terisolasi dari akun lama.</li>
+              <li><strong>Jangan terlalu lama antara salin nomor dan kirim ke aplikasi.</strong> Nomor virtual memiliki jendela waktu aktif. Semakin cepat Anda memasukkannya ke aplikasi, semakin baik.</li>
+              <li><strong>Gunakan jaringan data seluler</strong> (bukan WiFi) jika memungkinkan, karena IP seluler lebih dinamis dan cenderung lebih bersih di mata platform dibanding IP WiFi rumahan yang sering diblokir.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== BAB 4 ===================== -->
+      <div class="panel" id="panel-tutorial">
+        <div class="bab-header">
+          <h2>Bab 4: Trik IP, VPN & Strategi Anti Banned</h2>
+          <p>Platform modern menggunakan sistem deteksi berlapis — bukan hanya nomor, tapi juga IP, perangkat, dan pola perilaku Anda. Kuasai trik ini untuk memaksimalkan keberhasilan setiap transaksi.</p>
+        </div>
+
+        <!-- Card 1: Device Fingerprint & Cache -->
+        <div class="card">
+          <div class="card-head">
+            <span class="icon-circle amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <h3>1. Mengatasi Device Fingerprint & Cache yang Terblokir</h3>
+          </div>
+          <div class="card-body">
+            <p>Salah satu mekanisme pertahanan terkuat yang digunakan WhatsApp, Instagram, dan platform serupa adalah <strong>Device Fingerprinting</strong> — yaitu kemampuan aplikasi untuk "mengingat" perangkat Anda berdasarkan kombinasi data unik yang dikumpulkan secara diam-diam, meliputi:</p>
+            <ul class="dot-list">
+              <li>Model dan merek perangkat (misal: Samsung Galaxy A54)</li>
+              <li>Versi sistem operasi Android/iOS</li>
+              <li>ID iklan (Advertising ID / IDFA)</li>
+              <li>Resolusi layar dan density piksel</li>
+              <li>Kapasitas RAM dan penyimpanan internal</li>
+              <li>Daftar aplikasi yang terinstall (pada beberapa platform)</li>
+              <li>Riwayat percobaan pendaftaran sebelumnya yang tersimpan dalam cache lokal aplikasi</li>
+            </ul>
+            <p>Ketika Anda sudah beberapa kali gagal mendaftar dengan nomor berbeda dari HP yang sama, platform akan mulai mencurigai perangkat Anda dan menampilkan pesan seperti <em>"Tidak dapat mendaftar"</em>, <em>"Coba lagi nanti"</em>, atau langsung menolak tanpa pesan apapun — bahkan dengan nomor baru yang valid.</p>
+            <div class="card-divider"></div>
+            <p><strong>Solusi Bertahap yang Terbukti Efektif:</strong></p>
+            <ul class="dot-list">
+              <li><strong>Hapus Data & Cache Aplikasi (Bukan Hanya Uninstall):</strong> Pergi ke Pengaturan HP → Aplikasi → Pilih aplikasi target (misal WhatsApp) → klik <em>"Hapus Data"</em> DAN <em>"Hapus Cache"</em>. Ini jauh lebih efektif daripada sekadar uninstall-reinstall, karena beberapa data fingerprint tersimpan di folder tersembunyi sistem.</li>
+              <li><strong>Gunakan Dual Apps / Clone App / Parallel Space:</strong> Fitur ini tersedia di banyak HP Android (Samsung: Dual Messenger, Xiaomi: Dual Apps, dsb.). Dengan membuka klon aplikasi, Anda menjalankan instance baru yang benar-benar terisolasi, seolah-olah menggunakan HP berbeda dari perspektif aplikasi.</li>
+              <li><strong>Reset Advertising ID:</strong> Di Android, pergi ke Pengaturan → Google → Iklan → "Reset ID Iklan". Ini mengganti identitas iklan Anda yang digunakan beberapa platform sebagai bagian fingerprint.</li>
+              <li><strong>Gunakan HP Kedua:</strong> Jika semua cara di atas gagal, cara paling ampuh adalah menggunakan HP yang sama sekali berbeda — terutama HP yang belum pernah digunakan untuk mendaftar platform tersebut.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2: IP & VPN -->
+        <div class="card">
+          <div class="card-head">
+            <span class="icon-circle green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"/></svg>
+            </span>
+            <h3>2. Panduan Lengkap Penggunaan VPN & Proxy</h3>
+          </div>
+          <div class="card-body">
+            <p>IP Address adalah "alamat rumah" perangkat Anda di internet. Platform seperti WhatsApp menggunakan IP untuk menentukan lokasi geografis Anda dan mencocokkannya dengan lokasi asal nomor telepon. Ketidaksesuaian lokasi ini adalah <strong>salah satu penyebab utama kegagalan OTP</strong> yang sering diabaikan.</p>
+            <div class="highlight-box warn">
+              <strong>⚠ Aturan Emas:</strong> Lokasi IP Anda HARUS sesuai dengan negara nomor virtual yang Anda beli. Nomor USA → IP USA. Nomor Rusia → IP Rusia. Nomor Indonesia → IP Indonesia atau tanpa VPN.
+            </div>
+            <p><strong>Mengapa ini sangat penting?</strong> Bayangkan Anda sedang di Indonesia, lalu tiba-tiba mencoba mendaftar WhatsApp menggunakan nomor telepon Amerika (+1). WhatsApp melihat: nomor dari USA, tapi request datang dari IP Indonesia. Ini langsung memicu sistem anti-fraud mereka karena pola ini sangat identik dengan aktivitas pembuatan akun massal oleh bot atau penipu.</p>
+            <div class="card-divider"></div>
+            <p><strong>Rekomendasi Aplikasi VPN & Proxy:</strong></p>
+            <ul class="dot-list">
+              <li><strong>WARP by Cloudflare (1.1.1.1) — Gratis & Direkomendasikan:</strong> Aplikasi ini secara teknis bukan VPN biasa, melainkan proxy yang menggunakan protokol WireGuard untuk menyamarkan lalu lintas data Anda melalui jaringan Cloudflare global. Tidak memperlambat koneksi secara signifikan, gratis tanpa batas bandwidth, dan tersedia di Android/iOS. Namun perlu dicatat: WARP tidak selalu memberikan IP dari negara spesifik yang Anda inginkan — cocok untuk menyamarkan fingerprint IP, tapi kurang tepat untuk kebutuhan IP negara tertentu.</li>
+              <li><strong>ProtonVPN / Mullvad VPN — Untuk IP Negara Spesifik:</strong> Jika Anda perlu IP dari negara tertentu (USA, Rusia, Inggris, dll), gunakan VPN berbayar yang terpercaya dengan server di negara tersebut. ProtonVPN menawarkan versi gratis dengan server terbatas (USA, Belanda, Jepang).</li>
+              <li><strong>Proxy dalam Aplikasi WhatsApp (Fitur Bawaan):</strong> WhatsApp versi terbaru memiliki fitur <em>proxy bawaan</em> di menu Pengaturan → Penyimpanan & Data → Proxy. Anda bisa memasukkan alamat proxy server untuk menyamarkan koneksi tanpa perlu aplikasi VPN terpisah. Ini sangat berguna di negara-negara yang membatasi WhatsApp.</li>
+            </ul>
+            <div class="highlight-box">
+              <strong>💡 Cara Verifikasi IP Anda:</strong> Buka browser dan kunjungi <em>whatismyip.com</em> atau <em>ipleak.net</em> setelah VPN aktif. Pastikan lokasi yang terdeteksi sesuai dengan negara nomor yang akan Anda beli.
+            </div>
+            <div class="card-divider"></div>
+            <p><strong>Tips Tambahan tentang IP:</strong></p>
+            <ul class="dot-list">
+              <li><strong>ON/OFF Mode Pesawat (untuk Data Seluler):</strong> Jika Anda menggunakan kuota data seluler (bukan WiFi), IP Anda bersifat dinamis — artinya akan berubah setiap kali koneksi diputus dan disambung ulang. Aktifkan Mode Pesawat selama 10–15 detik, lalu matikan. Ini akan memberikan IP baru dari operator seluler Anda, yang umumnya lebih "bersih" dan tidak terblokir.</li>
+              <li><strong>Hindari WiFi Publik:</strong> WiFi di kafe, mall, atau tempat umum sering memiliki IP yang sudah diblokir platform karena banyak orang menggunakannya untuk aktivitas yang sama. Lebih baik gunakan data seluler pribadi.</li>
+              <li><strong>WiFi Rumah yang Sudah "Kotor":</strong> Jika WiFi rumah Anda sudah digunakan berkali-kali untuk percobaan pendaftaran yang gagal, IP-nya mungkin sudah masuk daftar blokir platform. Restart router Anda (cabut 30 detik lalu colok kembali) untuk mendapatkan IP baru dari ISP — meski ini tidak selalu berhasil karena banyak ISP menggunakan IP statis.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 3: Trik Per Platform -->
+        <div class="card">
+          <div class="card-head">
+            <span class="icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+            </span>
+            <h3>3. Trik Khusus Per Platform (WA, Telegram, TikTok, dll)</h3>
+          </div>
+          <div class="card-body">
+            <p>Setiap platform memiliki karakteristik sistem verifikasi yang berbeda. Berikut panduan spesifik untuk masing-masing:</p>
+            <ul class="dot-list">
+              <li>
+                <strong>WhatsApp (Platform Paling Ketat):</strong><br>
+                Gunakan <strong>WhatsApp Business</strong> (bukan WA biasa) — aplikasi ini lebih toleran terhadap nomor virtual baru dibanding WhatsApp Messenger biasa yang sangat agresif dalam mendeteksi nomor VOIP. Selain itu, WA Business jarang langsung meminta verifikasi nomor HP resmi ketika ada aktivitas yang dianggap mencurigakan. Pastikan selalu: hapus data WA dulu, aktifkan VPN sesuai negara nomor, baru masukkan nomor. Jika gagal, tunggu minimal 5 menit sebelum mencoba lagi (sistem WA memiliki <em>rate limiting</em> per perangkat).
+              </li>
+              <li>
+                <strong>Telegram (Perlu Perhatian Khusus):</strong><br>
+                <strong>JANGAN daftar Telegram melalui aplikasi HP</strong> jika Anda berada di negara dengan koneksi internet yang dideteksi "berisiko tinggi". Telegram via HP sangat sering meminta verifikasi akun Premium untuk pengiriman SMS ke nomor-nomor yang dianggap bot. Solusi terbaik: daftar melalui <strong>Telegram Web (web.telegram.org)</strong> atau <strong>Telegram Desktop di PC/laptop</strong>. Setelah akun berhasil dibuat di desktop, Anda bisa scan QR atau login di aplikasi HP menggunakan akun yang sama.
+              </li>
+              <li>
+                <strong>TikTok:</strong><br>
+                TikTok relatif lebih toleran terhadap nomor virtual dibanding WA/Telegram. Namun tetap perlu IP yang sesuai negara nomor. Gunakan browser TikTok (tiktok.com) bukan aplikasi untuk mendaftar — browser lebih mudah dikendalikan dari sisi IP/proxy dibanding aplikasi mobile.
+              </li>
+              <li>
+                <strong>Google / Gmail:</strong><br>
+                Google memiliki sistem deteksi yang sangat canggih. Nomor VOIP sering langsung ditolak. Gunakan nomor dari negara yang sesuai dengan bahasa akun yang ingin dibuat, dan pastikan tidak ada tanda-tanda aktivitas bot (jangan terlalu cepat mengisi form).
+              </li>
+              <li>
+                <strong>Platform Fintech / Kripto (Binance, OKX, dll):</strong><br>
+                Platform ini umumnya memerlukan nomor dengan reputasi sangat baik. Tingkat kegagalan lebih tinggi untuk nomor VOIP. Disarankan menggunakan server premium dengan nomor berkualitas lebih baik, meski harganya sedikit lebih mahal.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 4: Pola Yang Harus Dihindari -->
+        <div class="card">
+          <div class="card-head">
+            <span class="icon-circle red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            </span>
+            <h3>4. Pola Perilaku yang HARUS Dihindari (Pemicu Banned)</h3>
+          </div>
+          <div class="card-body">
+            <p>Selain faktor teknis, <strong>pola perilaku Anda setelah berhasil login</strong> sangat menentukan apakah akun akan bertahan atau langsung di-banned. Platform menggunakan sistem AI untuk mendeteksi pola akun baru yang mencurigakan:</p>
+            <ul class="dot-list">
+              <li><strong>Langsung Kirim Pesan Massal:</strong> Mengirim pesan ke banyak orang yang belum menyimpan nomor Anda dalam hitungan menit setelah aktivasi adalah tanda ban terbesar. Sistem mendeteksi ini sebagai aktivitas spam.</li>
+              <li><strong>Bergabung ke Banyak Grup Sekaligus:</strong> Akun baru yang langsung masuk ke 5-10 grup dalam waktu singkat akan otomatis ditandai sebagai bot oleh sistem WhatsApp.</li>
+              <li><strong>Profil Kosong Tanpa Foto:</strong> Akun tanpa foto profil dan nama yang valid lebih cepat di-banned. Segera isi foto profil dan nama setelah berhasil masuk.</li>
+              <li><strong>Menggunakan Pesan Template/Identik:</strong> Jika Anda mengirim pesan dengan teks yang sama persis ke banyak orang, sistem language model platform akan mendeteksinya sebagai spam.</li>
+              <li><strong>VPN Aktif Terus-menerus dengan Lokasi Tidak Konsisten:</strong> Jika setelah login Anda terus-menerus mengganti lokasi VPN (pagi USA, siang Rusia, sore Indonesia), platform akan mendeteksi anomali geografis dan meningkatkan level pengawasan akun Anda.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== BAB 5 ===================== -->
+      <div class="panel" id="panel-faq">
+        <div class="bab-header">
+          <h2>Bab 5: Keamanan Akun, Kebijakan Refund & FAQ</h2>
+          <p>Langkah wajib mengamankan akun setelah berhasil login, penjelasan lengkap kebijakan refund, dan jawaban atas pertanyaan-pertanyaan yang paling sering ditanyakan pengguna.</p>
+        </div>
+
+        <!-- Card: Pengamanan Akun -->
+        <div class="card">
+          <div class="card-head">
+            <span class="icon-circle amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
+            <h3>🔐 WAJIB Dilakukan: Cara Mengamankan Akun Setelah Berhasil Login</h3>
+          </div>
+          <div class="card-body">
+            <p>Berhasil login hanyalah 50% dari keberhasilan. Nomor virtual bersifat <strong>recycled</strong> — artinya suatu hari nanti, nomor yang sama mungkin "jatuh ke tangan" pengguna lain dari sistem provider yang sama, dan mereka bisa mencoba mengambil alih akun Anda dengan meminta OTP baru ke nomor tersebut. Tanpa 2FA, akun Anda sangat rentan.</p>
+            <p>Lakukan langkah-langkah berikut sesegera mungkin setelah berhasil masuk — idealnya <strong>dalam 5 menit pertama</strong> setelah login berhasil:</p>
+            <ul class="dot-list">
+              <li>
+                <strong>Aktifkan Verifikasi 2 Langkah (2FA / Two-Step Verification) — PALING PENTING:</strong><br>
+                Di WhatsApp: Pengaturan → Akun → Verifikasi 2 Langkah → Aktifkan → Buat PIN 6 Digit.<br>
+                Di Telegram: Pengaturan → Privasi &amp; Keamanan → Verifikasi Dua Langkah → Atur Kata Sandi.<br>
+                Dengan 2FA aktif, meskipun seseorang berhasil mendapatkan OTP baru dari nomor yang sama, mereka tetap tidak bisa masuk tanpa PIN yang hanya Anda ketahui. <strong>Ini adalah perlindungan paling krusial dan tidak boleh dilewatkan.</strong>
+              </li>
+              <li>
+                <strong>Kaitkan Alamat Email Pemulihan:</strong><br>
+                Setelah mengaktifkan 2FA, sistem akan meminta email sebagai metode pemulihan jika Anda lupa PIN. Gunakan email yang aktif dan Anda miliki aksesnya. Ini penting karena jika Anda lupa PIN 2FA dan tidak ada email pemulihan, akun bisa terkunci permanen selama 7 hari (WhatsApp) atau lebih lama (Telegram).
+              </li>
+              <li>
+                <strong>Isi Profil Akun (Foto + Nama):</strong><br>
+                Segera pasang foto profil dan nama yang valid. Akun dengan profil lengkap lebih kecil kemungkinannya ditandai sebagai bot oleh sistem platform dibanding akun dengan profil kosong.
+              </li>
+              <li>
+                <strong>Cooling Down Period (Masa Tenang):</strong><br>
+                Setelah berhasil login dan mengamankan akun, <strong>diamkan akun selama minimal 1–3 hari</strong> sebelum menggunakannya secara aktif. Jangan langsung kirim pesan massal, bergabung ke banyak grup, atau melakukan aktivitas tinggi apapun. Biarkan akun "bernafas" dan membangun reputasi historis yang baik di mata sistem platform. Semakin lama akun dibiarkan dorman dengan aktivitas normal, semakin kecil kemungkinan terkena banned mendadak.
+              </li>
+              <li>
+                <strong>Backup Kode 2FA:</strong><br>
+                Jika platform menyediakan kode backup (recovery code) saat mengaktifkan 2FA, simpan kode tersebut di tempat yang aman (notes terenkripsi, password manager, atau tuliskan di kertas yang disimpan baik-baik). Kode ini adalah satu-satunya cara memulihkan akun jika Anda kehilangan akses ke PIN dan email pemulihan.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card: Kebijakan Refund -->
+        <div class="card card-accent">
+          <div class="card-head">
+            <div class="icon-circle grey">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+            </div>
+            <h3>Kebijakan Refund Saldo — Syarat & Ketentuan Lengkap</h3>
+          </div>
+          <div class="card-body">
+            <p>Sistem refund di Jeeyhosting berjalan secara <strong>100% otomatis</strong> — tidak perlu menghubungi admin, tidak perlu menunggu review manual. Namun refund hanya berlaku dalam kondisi yang sangat spesifik. Baca ketentuan berikut dengan seksama:</p>
+            <div class="card-divider"></div>
+            <p><strong>✅ Kondisi Yang MENDAPAT Refund Saldo Otomatis:</strong></p>
+            <ul class="check-list" style="margin-bottom:12px;">
+              <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6 9 17l-5-5"/></svg></span><span>Anda sama sekali <strong>tidak menerima SMS apapun</strong> dari sistem selama masa tunggu, DAN Anda menekan tombol <strong>"Cancel / Batalkan"</strong> sebelum waktu 3 menit habis. Saldo akan dikembalikan penuh dalam hitungan detik.</span></li>
+              <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6 9 17l-5-5"/></svg></span><span>Sistem bot mengalami <strong>timeout otomatis</strong> (waktu habis di sisi server) dan tidak ada OTP yang masuk. Bot akan otomatis membatalkan dan mengembalikan saldo.</span></li>
+              <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6 9 17l-5-5"/></svg></span><span>Terjadi <strong>error sistem di sisi Jeeyhosting</strong> (bukan di sisi pengguna atau platform tujuan) yang menyebabkan transaksi gagal diproses. Tim teknis akan memverifikasi dan mengembalikan saldo.</span></li>
+            </ul>
+            <div class="card-divider"></div>
+            <p><strong>❌ Kondisi Yang TIDAK MENDAPAT Refund:</strong></p>
+            <ul class="check-list">
+              <li><span class="x-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span>OTP sudah masuk di bot (meski hanya 1 kode) — <strong>transaksi dianggap selesai</strong>, tidak peduli apakah kode masih berlaku atau sudah expired saat Anda melihatnya.</span></li>
+              <li><span class="x-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span>Akun terkena <strong>banned setelah berhasil login</strong> — ini adalah keputusan platform (WA/TG/dsb) akibat aktivitas Anda, bukan kegagalan sistem Nokos.</span></li>
+              <li><span class="x-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span>Anda <strong>salah memilih platform atau negara</strong> saat pembelian — kesalahan pengguna tidak dapat direfund.</span></li>
+              <li><span class="x-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span>Nomor meminta <strong>PIN 2FA dari pemilik lama</strong> — ini adalah karakteristik nomor recycled yang sudah dijelaskan di Bab 1, bukan kegagalan sistem.</span></li>
+              <li><span class="x-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span>Anda <strong>melewati waktu cancel (lebih dari 3 menit)</strong> tanpa menerima OTP — setelah batas waktu, hak cancel dan refund otomatis gugur.</span></li>
+              <li><span class="x-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span><strong>Platform menolak mendaftarkan nomor</strong> karena IP tidak sesuai, device banned, atau alasan teknis di sisi pengguna — ini bukan kegagalan di sisi provider nomor.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- FAQ Items -->
+        <div style="margin-top: 14px;">
+          <div class="faq-item">
+            <div class="faq-q"><span class="q-mark">Q</span><span>Saya berhasil login pakai OTP bot, tapi 5 menit kemudian akun saya di-banned. Bisa refund?</span></div>
+            <div class="faq-a">
+              <p><strong>TIDAK BISA.</strong> Sistem kami mencatat bahwa OTP telah sukses diantarkan — artinya transaksi dianggap selesai dari sisi layanan Nokos. Terkena <em>Banned</em> setelah berhasil masuk adalah sanksi dari pihak aplikasi (WA/TG), bukan kegagalan nomor. Penyebab paling umum: IP tidak sesuai lokasi nomor, device fingerprint yang sudah terdeteksi, atau aktivitas mencurigakan segera setelah login (kirim pesan massal, masuk banyak grup, dll). Selalu ikuti panduan di Bab 4 dan langkah pengamanan di awal Bab 5 untuk mencegah ini terjadi.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="q-mark">Q</span><span>Nomor yang saya dapat meminta PIN 2FA saat login. Apa yang terjadi? Bisa diganti?</span></div>
+            <div class="faq-a">
+              <p>Ini terjadi karena nomor tersebut adalah <strong>nomor recycled</strong> yang pernah digunakan oleh orang lain dan mereka mengaktifkan 2FA sebelum nomor itu "dijual kembali" ke sistem provider. Sayangnya PIN tersebut tidak diketahui siapapun selain pemilik lama. <strong>Tidak ada refund</strong> untuk kondisi ini karena ini adalah sifat alami nomor recycled yang sudah dijelaskan di Bab 1. Anda bisa mencoba: (1) menunggu 7 hari — WhatsApp akan mengizinkan reset 2FA jika pemilik lama tidak melakukan verifikasi email dalam 7 hari; (2) coba nomor lain dari server yang berbeda.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="q-mark">Q</span><span>Sudah transfer deposit tapi saldo tidak masuk lebih dari 5 menit. Apa yang harus dilakukan?</span></div>
+            <div class="faq-a">
+              <p>Pertama, pastikan Anda <strong>tidak menekan tombol "Batalkan"</strong> di bot setelah transfer — ini akan membuat sistem mengabaikan transfer Anda. Kedua, pastikan nominal yang ditransfer <strong>persis sama</strong> termasuk kode unik di akhir angka. Jika sudah memastikan keduanya dan saldo masih belum masuk setelah 10 menit, hubungi admin melalui saluran support resmi Jeeyhosting dengan menyertakan: <em>screenshot bukti transfer, nominal yang ditransfer, ID tiket invoice, dan waktu transfer</em>. Tim admin akan memverifikasi dan menambahkan saldo secara manual.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="q-mark">Q</span><span>Apakah aman menggunakan layanan Nokos? Apakah data saya bisa bocor?</span></div>
+            <div class="faq-a">
+              <p>Layanan Nokos beroperasi sepenuhnya melalui bot Telegram yang terenkripsi end-to-end. Jeeyhosting tidak menyimpan data pribadi pengguna seperti nama lengkap, nomor HP asli, atau informasi keuangan di luar yang dibutuhkan untuk verifikasi deposit. Nomor virtual yang Anda gunakan bersifat sementara dan tidak terhubung ke identitas asli Anda. Namun tetap ingat: jangan pernah membagikan password akun bot Anda kepada siapapun, termasuk yang mengaku sebagai admin Jeeyhosting — admin resmi tidak pernah meminta password Anda.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="q-mark">Q</span><span>Berapa lama saldo di akun bot berlaku? Apakah ada tanggal kedaluwarsa?</span></div>
+            <div class="faq-a">
+              <p>Saldo yang sudah masuk ke akun bot Jeeyhosting <strong>tidak memiliki tanggal kedaluwarsa</strong> — saldo akan tetap tersimpan selama akun Anda aktif dan tidak melanggar ketentuan layanan. Anda bisa menggunakannya kapan saja sesuai kebutuhan. Namun untuk menjaga keaktifan akun, disarankan melakukan minimal satu transaksi dalam periode tertentu (lihat ketentuan terbaru di bot untuk detailnya).</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="q-mark">Q</span><span>Platform meminta verifikasi video call atau ID card — apa ini normal?</span></div>
+            <div class="faq-a">
+              <p>Ya, ini adalah mekanisme <strong>enhanced verification</strong> yang diterapkan beberapa platform (terutama TikTok, Instagram, dan layanan fintech) ketika sistem mereka mencurigai aktivitas tidak wajar. Ini berarti platform sudah mendeteksi sesuatu yang tidak normal dari akun atau perangkat Anda — bisa dari IP yang tidak konsisten, device fingerprint yang sudah di-flag, atau pola perilaku mencurigakan. Sayangnya jika platform meminta ini, nomor virtual tidak bisa membantu lebih lanjut karena verifikasi yang diminta adalah identitas nyata. Coba ulangi dari awal dengan perangkat bersih, IP yang benar-benar sesuai, dan hindari pola yang memicu deteksi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- .content -->
+  </div><!-- .body-wrap -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="checkbox-row" id="agreeRow">
+      <input type="checkbox" id="agree">
+      <label for="agree">Saya telah membaca, memahami, dan menyetujui seluruh ketentuan layanan serta kebijakan yang tertera di atas.</label>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="btnSelesai">
+        Lanjutkan ke Bot
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const tabs        = document.querySelectorAll('.tab');
+  const panels      = document.querySelectorAll('.panel');
+  const contentArea = document.querySelector('.content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const target = document.getElementById('panel-' + tab.dataset.tab);
+      if (target) target.classList.add('active');
+      contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  const agreeCheckbox = document.getElementById('agree');
+  const agreeRow      = document.getElementById('agreeRow');
+  const btnSelesai    = document.getElementById('btnSelesai');
+
+  agreeRow.addEventListener('click', e => {
+    if (e.target !== agreeCheckbox) {
+      agreeCheckbox.checked = !agreeCheckbox.checked;
+      agreeCheckbox.dispatchEvent(new Event('change'));
+    }
+  });
+
+  agreeCheckbox.addEventListener('change', () => {
+    const c = agreeCheckbox.checked;
+    btnSelesai.classList.toggle('enabled', c);
+    agreeRow.classList.toggle('checked', c);
+  });
+
+  btnSelesai.addEventListener('click', () => {
+    if (agreeCheckbox.checked) window.location.href = 'https://t.me/Jeeytsdbot';
+  });
+</script>
+
+</body>
+</html>
